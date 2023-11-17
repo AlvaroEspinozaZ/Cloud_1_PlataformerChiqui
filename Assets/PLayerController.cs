@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PLayerController : MonoBehaviour
 {
     private Rigidbody2D rgb;
@@ -9,7 +9,9 @@ public class PLayerController : MonoBehaviour
     public float x,y;
     public float velocity;
     public float jump;
+    public float life;
     [SerializeField] GameObject cuchilla;
+    public event Action<PLayerController> Life_n;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,13 @@ public class PLayerController : MonoBehaviour
         else
         {
             cuchilla.SetActive(false);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Dead")
+        {
+            Life_n?.Invoke(GetComponent<PLayerController>());
         }
     }
 }

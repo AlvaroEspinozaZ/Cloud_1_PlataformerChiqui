@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private List<Coin> _listCoins;
@@ -12,6 +13,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lifes;
 
     [SerializeField] UnityEvent _win;
+    [SerializeField] UnityEvent _dead;
+    [SerializeField] private PLayerController _player;
     int total;
     void Start()
     {
@@ -20,6 +23,9 @@ public class GameController : MonoBehaviour
             _listCoins[i].gaisnCoin += GainCoins;  
         }
         _WinCoins.gaisnCoin += WIN;
+
+
+        _player.Life_n += Dead;
     }
 
     // Update is called once per frame
@@ -37,5 +43,34 @@ public class GameController : MonoBehaviour
     {
         c.gameObject.SetActive(false);
         _win?.Invoke();
+    }
+    void Dead(PLayerController p)
+    {
+        _player.GetComponent<Transform>().position = new Vector2(-6,3);
+        p.life-=1;
+        lifes.text = "Lifes : " + p.life;
+        if (p.life < 0)
+        {
+            _dead?.Invoke();
+        }
+       
+        
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
