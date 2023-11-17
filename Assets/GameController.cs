@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
         _player.GetComponent<Transform>().position = new Vector2(-6,3);
         p.life-=1;
         lifes.text = "Lifes : " + p.life;
-        if (p.life < 0)
+        if (p.life <= 0)
         {
             _dead?.Invoke();
         }
