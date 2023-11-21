@@ -5,17 +5,7 @@ using UnityEngine;
 
 public class Cuchilla : MonoBehaviour
 {
-    public int empuje;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public int empuje; 
 
     private void OnTriggerStay2D(Collider2D collision)
     {

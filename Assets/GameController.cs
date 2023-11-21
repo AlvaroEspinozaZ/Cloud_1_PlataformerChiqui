@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     [SerializeField] UnityEvent _win;
     [SerializeField] UnityEvent _dead;
     [SerializeField] private PLayerController _player;
+    [SerializeField] private SpawMeteorito _spawm;
+    [SerializeField] private int direction;
+    [SerializeField] private float velocityMeteorite;
     int total;
     void Start()
     {
@@ -26,6 +29,11 @@ public class GameController : MonoBehaviour
 
 
         _player.Life_n += Dead;
+
+
+        _spawm._SpawMeteorito += Spw;
+
+        
     }
 
     // Update is called once per frame
@@ -52,11 +60,14 @@ public class GameController : MonoBehaviour
         if (p.life <= 0)
         {
             _dead?.Invoke();
-        }
-       
-        
+        }      
     }
 
+    public void Spw()
+    {
+        _spawm.SpwamMeteoritos(direction, velocityMeteorite);
+    }   
+ 
     public void ExitGame()
     {
         Application.Quit();
