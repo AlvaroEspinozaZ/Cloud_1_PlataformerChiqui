@@ -60,7 +60,8 @@ public class GameController : MonoBehaviour
         if (p.life <= 0)
         {
             _dead?.Invoke();
-        }      
+        }
+        _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void Spw()

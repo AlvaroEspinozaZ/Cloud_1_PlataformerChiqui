@@ -17271,7 +17271,7 @@ GameObject:
   - component: {fileID: 1065306758}
   - component: {fileID: 1065306757}
   - component: {fileID: 1065306755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
